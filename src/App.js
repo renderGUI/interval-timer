@@ -1,20 +1,22 @@
-import classes from "./App.module.scss";
+import { TimerContextProvider } from "../src/contexts/timer-context";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from "./pages/Menu.js";
+import RestDuration from "./pages/RestDuration.js";
+import SetsAmount from "./pages/SetsAmount.js";
+import WorkDuration from "./pages/WorkDuration.js";
 
 const App = () => {
   return (
-    <div className={classes.container}>
-      <h2 className={classes.totalTime}>17:00</h2>
-
-      <div className={classes.subcontainer}>
-        <button className={classes.optionsButton}>3:00</button>
-        <button className={classes.goButton}>GO</button>
-        <button className={classes.optionsButton}>0:30</button>
-      </div>
-
-      <div className={classes.subcontainer}>
-        <button className={classes.optionsButton}>x5</button>
-      </div>
-    </div>
+    <TimerContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Menu />} />
+          <Route path="work-duration" element={<WorkDuration />} />
+          <Route path="rest-duration" element={<RestDuration />} />
+          <Route path="sets-amount" element={<SetsAmount />} />
+        </Routes>
+      </BrowserRouter>
+    </TimerContextProvider>
   );
 };
 
