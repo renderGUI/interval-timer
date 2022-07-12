@@ -1,0 +1,57 @@
+@use "./config";
+
+* {
+  // outline: 1px solid red;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: config.$text;
+  text-align: center;
+  row-gap: 25px;
+}
+
+.totalTime {
+  font-size: 3rem;
+}
+
+.subcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 25px;
+}
+
+.optionsButton {
+  background-color: lighten(config.$primary, 15%);
+}
+
+.optionsButton:hover {
+  cursor: pointer;
+  background-color: lighten(config.$primary, 20%);
+}
+
+.goButton {
+  background-color: config.$secondary;
+}
+
+.goButton:hover {
+  cursor: pointer;
+  background-color: darken(config.$secondary, 5%);
+}
+
+.optionsButton,
+.goButton {
+  font-weight: 600;
+  color: config.$text;
+  border: none;
+  font-size: 1.875rem;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
