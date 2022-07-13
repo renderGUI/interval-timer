@@ -1,0 +1,33 @@
+@use "../config";
+
+* {
+  // outline: 1px solid red;
+}
+
+.container {
+  text-align: center;
+}
+
+.heading {
+  font-size: 3rem;
+  margin-bottom: 1px;
+  color: config.$text;
+}
+
+.subheading {
+  margin-top: 1px;
+  color: config.$text;
+}
+
+.subcontainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.time {
+  font-size: 3rem;
+  font-weight: 600;
+  color: config.$secondary;
+}
