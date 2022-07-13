@@ -1,20 +1,21 @@
 import classes from "./Slider.module.scss";
 
-const Slider = () => {
-  const changeHandler = (e) => {
-    console.log(e.target.value);
+const Slider = (props) => {
+  const mouseUpHandler = () => {
+    console.log("Settings changed.");
   };
 
   return (
     <div className={classes.sliderContainer}>
       <input
         className={classes.slider}
-        onChange={changeHandler}
+        onChange={props.changeHandler}
+        onMouseUp={mouseUpHandler}
         type="range"
-        min="5"
-        max="720"
-        step="5"
-        defaultValue="30"
+        min={props.min}
+        max={props.max}
+        step={props.step}
+        defaultValue={props.defaultValue}
       ></input>
     </div>
   );
