@@ -1,7 +1,28 @@
+import Slider from "../components/Slider";
+import classes from "./Settings.module.scss";
+import { useTimer } from "../contexts/timer-context";
+
 const RestDuration = () => {
+  const { restTime, setRestTime } = useTimer();
+
+  const changeHandler = (e) => {
+    setRestTime(e.target.value);
+  };
+
   return (
-    <div>
-      <p>rest duration page</p>
+    <div className={classes.container}>
+      <h2 className={classes.heading}>Rest</h2>
+      <p className={classes.subheading}>(The length rest between each set)</p>
+      <div className={classes.subcontainer}>
+        <p className={classes.time}>{restTime}</p>
+        <Slider
+          min={5}
+          max={720}
+          step={5}
+          defaultValue={restTime}
+          changeHandler={changeHandler}
+        />
+      </div>
     </div>
   );
 };

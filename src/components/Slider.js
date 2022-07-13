@@ -1,8 +1,11 @@
 import classes from "./Slider.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Slider = (props) => {
+  const navigate = useNavigate();
+
   const mouseUpHandler = () => {
-    console.log("Settings changed.");
+    navigate("/");
   };
 
   return (

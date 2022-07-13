@@ -1,12 +1,11 @@
 import Slider from "../components/Slider";
-import classes from "./WorkDuration.module.scss";
+import classes from "./Settings.module.scss";
 import { useTimer } from "../contexts/timer-context";
 
 const WorkDuration = () => {
   const { workTime, setWorkTime } = useTimer();
 
   const changeHandler = (e) => {
-    console.log(e.target.value);
     setWorkTime(e.target.value);
   };
 
@@ -20,7 +19,7 @@ const WorkDuration = () => {
           min={5}
           max={720}
           step={5}
-          defaultValue={30}
+          defaultValue={workTime}
           changeHandler={changeHandler}
         />
       </div>
