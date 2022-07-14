@@ -1,11 +1,25 @@
 import classes from "./Menu.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useTimer } from "../contexts/timer-context";
+import { useEffect } from "react";
 
 const Menu = () => {
   console.log("Menu component re-rendered.");
-  const { workTime, restTime, sets } = useTimer();
+  const {
+    workTime,
+    restTime,
+    sets,
+    calculateTotalSeconds,
+    convertedWorkTime,
+    convertedRestTime,
+    convertedTotalTime,
+  } = useTimer();
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    calculateTotalSeconds(workTime, restTime, sets);
+  }, [workTime, restTime, sets]);
 
   const workDurationHandler = () => {
     navigate("/work-duration");
@@ -21,14 +35,14 @@ const Menu = () => {
 
   return (
     <div className={classes.container}>
-      <h2 className={classes.totalTime}>17:00</h2>
+      <h2 className={classes.totalTime}>{convertedTotalTime}</h2>
       <div className={classes.subcontainer}>
         <button onClick={workDurationHandler} className={classes.optionsButton}>
-          {workTime}
+          {convertedWorkTime}
         </button>
         <button className={classes.goButton}>GO</button>
         <button onClick={restDurationHandler} className={classes.optionsButton}>
-          {restTime}
+          {convertedRestTime}
         </button>
       </div>
       <div className={classes.subcontainer}>
