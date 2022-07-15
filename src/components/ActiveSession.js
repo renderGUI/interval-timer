@@ -52,7 +52,7 @@ const ActiveSession = () => {
       <p className={classes.remainingTime}>
         {isWorking ? activeWorkTime : activeRestTime}
       </p>
-      <PlayPauseControls />
+      <PlayPauseControls isWorking={isWorking} />
     </div>
   );
 };

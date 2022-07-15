@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useTimer } from "../contexts/timer-context";
 
-const PlayPauseControls = () => {
+const PlayPauseControls = (props) => {
   const { isPaused, setIsPaused } = useTimer();
 
   const pauseResumeHandler = () => {
@@ -33,6 +33,7 @@ const PlayPauseControls = () => {
       <button
         onClick={pauseResumeHandler}
         className={classes.pauseResumeButton}
+        style={{ color: props.isWorking ? "#dd7777" : "#77a0dd" }}
       >
         <FontAwesomeIcon icon={isPaused ? faPlay : faPause} />
       </button>
