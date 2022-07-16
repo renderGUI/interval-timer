@@ -2,24 +2,31 @@ import classes from "./ActiveSession.module.scss";
 import { useTimer } from "../contexts/timer-context";
 import { useEffect, useState } from "react";
 import PlayPauseControls from "./PlayPauseControls";
+import SummaryScreen from "./SummaryScreen";
 
 const ActiveSession = () => {
-  const { isPaused, workTime, restTime } = useTimer();
+  const { isPaused, workTime, restTime, sets, convertToTime } = useTimer();
 
   const [activeWorkTime, setActiveWorkTime] = useState(workTime);
   const [activeRestTime, setActiveRestTime] = useState(restTime);
+  const [setsRemaining, setSetsRemaining] = useState(sets);
   const [isWorking, setIsWorking] = useState(true);
+
+  const convertedActiveWorkTime = convertToTime(activeWorkTime);
+  const convertedActiveRestTime = convertToTime(activeRestTime);
 
   useEffect(() => {
     let timer;
-    if (!isPaused && isWorking) {
+    if (!isPaused && setsRemaining > 0 && isWorking) {
       timer = setInterval(() => {
         setActiveWorkTime((prevState) => prevState - 1);
+        console.log(setsRemaining);
         console.log("working...");
       }, 1000);
-    } else if (!isPaused && !isWorking) {
+    } else if (!isPaused && setsRemaining > 0 && !isWorking) {
       timer = setInterval(() => {
         setActiveRestTime((prevState) => prevState - 1);
+        console.log(setsRemaining);
         console.log("resting...");
       }, 1000);
     }
@@ -27,11 +34,12 @@ const ActiveSession = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [isPaused, isWorking]);
+  }, [isPaused, isWorking, setsRemaining]);
 
   useEffect(() => {
     if (activeWorkTime === 0) {
       console.log("work time ended!");
+      setSetsRemaining((prevState) => prevState - 1);
       setIsWorking(false);
       setActiveWorkTime(workTime);
     } else if (activeRestTime === 0) {
@@ -42,18 +50,23 @@ const ActiveSession = () => {
   }, [activeWorkTime, activeRestTime]);
 
   return (
-    <div
-      className={classes.container}
-      style={{ backgroundColor: isWorking ? "#dd7777" : "#77a0dd" }}
-    >
-      <p className={classes.statusMessage}>
-        {isWorking ? "WORK." : "REST.  GET READY IN..."}
-      </p>
-      <p className={classes.remainingTime}>
-        {isWorking ? activeWorkTime : activeRestTime}
-      </p>
-      <PlayPauseControls isWorking={isWorking} />
-    </div>
+    <>
+      {setsRemaining > 0 && (
+        <div
+          className={classes.container}
+          style={{ backgroundColor: isWorking ? "#dd7777" : "#77a0dd" }}
+        >
+          <p className={classes.statusMessage}>
+            {isWorking ? "WORK." : "REST.  GET READY IN..."}
+          </p>
+          <p className={classes.remainingTime}>
+            {isWorking ? convertedActiveWorkTime : convertedActiveRestTime}
+          </p>
+          <PlayPauseControls isWorking={isWorking} />
+        </div>
+      )}
+      {setsRemaining === 0 && <SummaryScreen />}
+    </>
   );
 };
 
