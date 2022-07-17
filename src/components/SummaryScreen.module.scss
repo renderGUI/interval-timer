@@ -1,0 +1,43 @@
+@use "../config";
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 600;
+  color: config.$text;
+  margin-bottom: 50px;
+}
+
+.totalTime {
+  font-size: 3rem;
+  color: config.$secondary;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.endSessionButton {
+  font-size: 1.875rem;
+  background-color: lighten(config.$primary, 15%);
+  color: config.$text;
+  border: none;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 50px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: lighten(config.$primary, 20%);
+  }
+}

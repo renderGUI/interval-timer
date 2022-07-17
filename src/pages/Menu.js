@@ -14,9 +14,10 @@ const Menu = () => {
     convertedWorkTime,
     convertedRestTime,
     convertedTotalTime,
+    activeSession,
+    setActiveSession,
   } = useTimer();
 
-  const [timerStarted, setTimerStarted] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,12 +37,12 @@ const Menu = () => {
   };
 
   const startHandler = () => {
-    setTimerStarted(true);
+    setActiveSession(true);
   };
 
   return (
     <>
-      {!timerStarted && (
+      {!activeSession && (
         <div className={classes.container}>
           <h2 className={classes.totalTime}>{convertedTotalTime}</h2>
           <div className={classes.subcontainer}>
@@ -71,7 +72,7 @@ const Menu = () => {
           </div>
         </div>
       )}
-      {timerStarted && <ActiveSession />}
+      {activeSession && <ActiveSession />}
     </>
   );
 };

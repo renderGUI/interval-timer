@@ -10,8 +10,9 @@ export const TimerContextProvider = (props) => {
   const [totalTime, setTotalTime] = useState(0);
   const [workTime, setWorkTime] = useState(180);
   const [restTime, setRestTime] = useState(30);
-  const [sets, setSets] = useState(5);
+  const [sets, setSets] = useState(0); // change back to 5 after development
   const [isPaused, setIsPaused] = useState(false);
+  const [activeSession, setActiveSession] = useState(false);
 
   const calculateTotalSeconds = (workTime, restTime, sets) => {
     setTotalTime((parseInt(workTime) + parseInt(restTime)) * parseInt(sets));
@@ -48,6 +49,8 @@ export const TimerContextProvider = (props) => {
     convertedTotalTime,
     isPaused,
     setIsPaused,
+    activeSession,
+    setActiveSession,
   };
 
   return (
