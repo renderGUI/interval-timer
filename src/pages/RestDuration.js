@@ -12,7 +12,7 @@ const RestDuration = () => {
   return (
     <div className={classes.container}>
       <h2 className={classes.heading}>Rest</h2>
-      <p className={classes.subheading}>(The length rest between each set)</p>
+      <p className={classes.subheading}>(The length of rest between each set)</p>
       <div className={classes.subcontainer}>
         <p className={classes.time}>{convertedRestTime}</p>
         <Slider
