@@ -1,0 +1,33 @@
+@use "../config";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 300px;
+}
+
+.bar {
+  position: relative;
+  height: 10px;
+  width: 100%;
+  background-color: #ed8b8b;
+  border-radius: 25px;
+}
+
+.fill {
+  align-self: flex-start;
+  position: absolute;
+  height: 10px;
+  width: 25%;
+  background-color: config.$text;
+  border-radius: 25px;
+}
+
+.setText {
+  margin-top: 10px;
+  margin-bottom: 0;
+}

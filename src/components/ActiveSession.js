@@ -3,6 +3,7 @@ import { useTimer } from "../contexts/timer-context";
 import { useEffect, useState } from "react";
 import PlayPauseControls from "./PlayPauseControls";
 import SummaryScreen from "./SummaryScreen";
+import ProgressBar from "./ProgressBar";
 
 const ActiveSession = () => {
   const { isPaused, workTime, restTime, sets, convertToTime } = useTimer();
@@ -62,6 +63,7 @@ const ActiveSession = () => {
           <p className={classes.remainingTime}>
             {isWorking ? convertedActiveWorkTime : convertedActiveRestTime}
           </p>
+          <ProgressBar />
           <PlayPauseControls isWorking={isWorking} />
         </div>
       )}
