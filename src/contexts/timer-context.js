@@ -10,7 +10,7 @@ export const TimerContextProvider = (props) => {
   const [totalTime, setTotalTime] = useState(0);
   const [workTime, setWorkTime] = useState(180);
   const [restTime, setRestTime] = useState(30);
-  const [sets, setSets] = useState(0); // change back to 5 after development
+  const [sets, setSets] = useState(5);
   const [isPaused, setIsPaused] = useState(false);
   const [activeSession, setActiveSession] = useState(false);
 
@@ -29,9 +29,15 @@ export const TimerContextProvider = (props) => {
     return `${leadingZero(min)}:${leadingZero(sec)}`;
   };
 
+  const convertToHHMMSS = (seconds) => {
+    const d = new Date(null);
+    d.setSeconds(seconds);
+    return d.toISOString().substr(11, 8);
+  };
+
   const convertedWorkTime = convertToTime(workTime);
   const convertedRestTime = convertToTime(restTime);
-  const convertedTotalTime = convertToTime(totalTime);
+  const convertedTotalTime = convertToHHMMSS(totalTime);
 
   const value = {
     totalTime,
