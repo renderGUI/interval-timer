@@ -11,10 +11,15 @@ const ActiveSession = () => {
   const [activeWorkTime, setActiveWorkTime] = useState(workTime);
   const [activeRestTime, setActiveRestTime] = useState(restTime);
   const [setsRemaining, setSetsRemaining] = useState(sets);
+  const [currentSet, setCurrentSet] = useState(1);
   const [isWorking, setIsWorking] = useState(true);
 
   const convertedActiveWorkTime = convertToTime(activeWorkTime);
   const convertedActiveRestTime = convertToTime(activeRestTime);
+
+  const percentageOfEachSet = 100 / sets;
+  const [currentPercentage, setCurrentPercentage] =
+    useState(percentageOfEachSet);
 
   useEffect(() => {
     let timer;
@@ -45,6 +50,8 @@ const ActiveSession = () => {
       setActiveWorkTime(workTime);
     } else if (activeRestTime === 0) {
       console.log("rest time ended!");
+      setCurrentSet((prevState) => prevState + 1);
+      setCurrentPercentage((prevState) => prevState + percentageOfEachSet);
       setIsWorking(true);
       setActiveRestTime(restTime);
     }
@@ -63,7 +70,11 @@ const ActiveSession = () => {
           <p className={classes.remainingTime}>
             {isWorking ? convertedActiveWorkTime : convertedActiveRestTime}
           </p>
-          <ProgressBar />
+          <ProgressBar
+            currentSet={currentSet}
+            isWorking={isWorking}
+            currentPercentage={currentPercentage}
+          />
           <PlayPauseControls isWorking={isWorking} />
         </div>
       )}

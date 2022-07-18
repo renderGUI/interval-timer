@@ -14,7 +14,6 @@
   position: relative;
   height: 10px;
   width: 100%;
-  background-color: #ed8b8b;
   border-radius: 25px;
 }
 
@@ -22,9 +21,9 @@
   align-self: flex-start;
   position: absolute;
   height: 10px;
-  width: 25%;
   background-color: config.$text;
   border-radius: 25px;
+  transition: 0.3s ease-in-out;
 }
 
 .setText {
