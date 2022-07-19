@@ -6,13 +6,14 @@ import SummaryScreen from "./SummaryScreen";
 import ProgressBar from "./ProgressBar";
 
 const ActiveSession = () => {
-  const { isPaused, workTime, restTime, sets, convertToTime } = useTimer();
+  const { workTime, restTime, sets, convertToTime } = useTimer();
 
   const [activeWorkTime, setActiveWorkTime] = useState(workTime);
   const [activeRestTime, setActiveRestTime] = useState(restTime);
   const [setsRemaining, setSetsRemaining] = useState(sets);
   const [currentSet, setCurrentSet] = useState(1);
   const [isWorking, setIsWorking] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   const convertedActiveWorkTime = convertToTime(activeWorkTime);
   const convertedActiveRestTime = convertToTime(activeRestTime);
@@ -26,14 +27,10 @@ const ActiveSession = () => {
     if (!isPaused && setsRemaining > 0 && isWorking) {
       timer = setInterval(() => {
         setActiveWorkTime((prevState) => prevState - 1);
-        console.log(setsRemaining);
-        console.log("working...");
       }, 1000);
     } else if (!isPaused && setsRemaining > 0 && !isWorking) {
       timer = setInterval(() => {
         setActiveRestTime((prevState) => prevState - 1);
-        console.log(setsRemaining);
-        console.log("resting...");
       }, 1000);
     }
 
@@ -44,12 +41,10 @@ const ActiveSession = () => {
 
   useEffect(() => {
     if (activeWorkTime === 0) {
-      console.log("work time ended!");
       setSetsRemaining((prevState) => prevState - 1);
       setIsWorking(false);
       setActiveWorkTime(workTime);
     } else if (activeRestTime === 0) {
-      console.log("rest time ended!");
       setCurrentSet((prevState) => prevState + 1);
       setCurrentPercentage((prevState) => prevState + percentageOfEachSet);
       setIsWorking(true);
@@ -75,7 +70,11 @@ const ActiveSession = () => {
             isWorking={isWorking}
             currentPercentage={currentPercentage}
           />
-          <PlayPauseControls isWorking={isWorking} />
+          <PlayPauseControls
+            isWorking={isWorking}
+            setIsPaused={setIsPaused}
+            isPaused={isPaused}
+          />
         </div>
       )}
       {setsRemaining === 0 && <SummaryScreen />}

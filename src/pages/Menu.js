@@ -1,11 +1,10 @@
 import classes from "./Menu.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useTimer } from "../contexts/timer-context";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ActiveSession from "../components/ActiveSession";
 
 const Menu = () => {
-  // console.log("Menu component re-rendered.");
   const {
     workTime,
     restTime,

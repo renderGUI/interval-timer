@@ -4,15 +4,15 @@ import { faPause, faPlay, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useTimer } from "../contexts/timer-context";
 
 const PlayPauseControls = (props) => {
-  const { isPaused, setIsPaused, setActiveSession } = useTimer();
+  const { setActiveSession } = useTimer();
 
   const pauseResumeHandler = () => {
-    setIsPaused(!isPaused);
+    props.setIsPaused(!props.isPaused);
   };
 
   const quitHandler = () => {
     setActiveSession(false);
-    setIsPaused(false);
+    props.setIsPaused(false);
   };
 
   return (
@@ -22,9 +22,9 @@ const PlayPauseControls = (props) => {
         className={classes.pauseResumeButton}
         style={{ color: props.isWorking ? "#dd7777" : "#77a0dd" }}
       >
-        <FontAwesomeIcon icon={isPaused ? faPlay : faPause} />
+        <FontAwesomeIcon icon={props.isPaused ? faPlay : faPause} />
       </button>
-      {isPaused && (
+      {props.isPaused && (
         <button onClick={quitHandler} className={classes.quitButton}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
