@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Slider = (props) => {
   const navigate = useNavigate();
 
-  const mouseUpHandler = () => {
+  const confirmSettingHandler = () => {
     navigate("/");
   };
 
@@ -13,7 +13,8 @@ const Slider = (props) => {
       <input
         className={classes.slider}
         onChange={props.changeHandler}
-        onMouseUp={mouseUpHandler}
+        onMouseUp={confirmSettingHandler}
+        onTouchEnd={confirmSettingHandler}
         type="range"
         min={props.min}
         max={props.max}
