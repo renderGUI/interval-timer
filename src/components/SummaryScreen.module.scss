@@ -25,6 +25,9 @@
 }
 
 .endSessionButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.875rem;
   background-color: lighten(config.$primary, 15%);
   color: config.$text;
@@ -33,6 +36,7 @@
   width: 100px;
   height: 100px;
   text-align: center;
+  text-align: -webkit-center;
   font-weight: 600;
   margin-top: 50px;
 

@@ -7,9 +7,13 @@
   align-items: center;
   row-gap: 10px;
   text-align: center;
+  text-align: -webkit-center;
   margin-top: 50px;
 
   .pauseResumeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 3rem;
     border: none;
     border-radius: 50%;
